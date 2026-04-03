@@ -2,7 +2,11 @@ const express = require('express');
 const dotenv = require('dotenv');
 const connectDB = require('./config/database');
 
-dotenv.config();
+// Load .env only in development
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config();
+}
+
 connectDB();
 
 const app = express();
