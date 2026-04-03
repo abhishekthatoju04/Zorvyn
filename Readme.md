@@ -256,3 +256,8 @@ GET /api/dashboard/summary
 - **JWT over sessions:** Stateless authentication is simpler to implement and scales better for APIs.
 - **Manual password hashing in controller:** Done to avoid compatibility issues with Mongoose pre-save hooks in newer bcryptjs versions.
 - **No rate limiting:** Would be added in production using `express-rate-limit` to prevent abuse.
+
+
+<img width="1920" height="1028" alt="Screenshot (1421)" src="https://github.com/user-attachments/assets/0ad34caf-6a56-4fc7-819b-7b12d0bec5b9" />
+
+
