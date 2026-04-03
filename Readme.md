@@ -1,12 +1,12 @@
 # Finance Data Processing and Access Control Backend
 
-A RESTful backend API for a finance dashboard system with role-based access control, built with Node.js, Express, and MongoDB.
+A RESTful backend API for a finance dashboard system with role-based access control, built with Node.js, Express, and MongoDB Atlas.
 
 ## Tech Stack
 
 - **Runtime:** Node.js
 - **Framework:** Express.js v4
-- **Database:** MongoDB with Mongoose
+- **Database:** MongoDB Atlas (Cloud) with Mongoose
 - **Authentication:** JWT (JSON Web Tokens)
 - **Validation:** express-validator
 - **Password Hashing:** bcryptjs
@@ -16,7 +16,7 @@ A RESTful backend API for a finance dashboard system with role-based access cont
 finance-backend/
 ├── src/
 │   ├── config/
-│   │   └── database.js          # MongoDB connection
+│   │   └── database.js          # MongoDB Atlas connection
 │   ├── controllers/
 │   │   ├── authController.js    # Register & login logic
 │   │   ├── userController.js    # User management logic
@@ -43,12 +43,12 @@ finance-backend/
 
 ### Prerequisites
 - Node.js v16+
-- MongoDB running locally or MongoDB Atlas account
+- MongoDB Atlas account (free tier works fine) or local MongoDB
 
 ### 1. Clone the repository
 ```bash
-git clone <your-repo-url>
-cd finance-backend
+git clone https://github.com/abhishekthatoju04/Zorvyn.git
+cd Zorvyn
 ```
 
 ### 2. Install dependencies
@@ -57,6 +57,16 @@ npm install
 ```
 
 ### 3. Create `.env` file in root directory
+
+For **MongoDB Atlas** (recommended):
+```
+PORT=5000
+MONGO_URI=mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/finance_db
+JWT_SECRET=your_secret_key_here
+JWT_EXPIRES_IN=7d
+```
+
+For **local MongoDB**:
 ```
 PORT=5000
 MONGO_URI=mongodb://localhost:27017/finance_db
@@ -74,6 +84,15 @@ npm start
 ```
 
 Server runs at `http://localhost:5000`
+
+---
+
+## Database
+
+This project uses **MongoDB Atlas** — a fully managed cloud database. The connection is established via Mongoose using the `MONGO_URI` environment variable. Atlas provides:
+- Free M0 cluster (512MB storage)
+- Automatic backups
+- Global availability for deployed APIs
 
 ---
 
@@ -222,14 +241,15 @@ GET /api/dashboard/summary
 ## Assumptions Made
 
 1. The first admin user is created via the register endpoint by passing `"role": "admin"` in the request body. In production this would be restricted.
-2. Deleted records are soft deleted — they are marked with `isDeleted: true` and hidden from all queries but never permanently removed from the database.
+2. Deleted records are soft deleted — marked with `isDeleted: true` and hidden from all queries but never permanently removed from the database.
 3. JWT tokens expire in 7 days. After expiry the user must login again.
 4. Passwords are hashed using bcryptjs with a salt round of 12 before storing in the database.
 5. An admin cannot deactivate their own account or change their own role to prevent accidental lockout.
 
 ## Tradeoffs Considered
 
-- **MongoDB over SQL:** Chosen for flexibility in document structure and ease of setup for this use case.
-- **Soft delete over hard delete:** Preserves data history which is important for financial records.
-- **JWT over sessions:** Stateless authentication is simpler to implement and scales better.
+- **MongoDB Atlas over local/SQL:** Chosen for cloud availability, flexible document structure, and ease of setup. Atlas also allows the API to be deployed and accessed from anywhere without managing infrastructure.
+- **Soft delete over hard delete:** Preserves data history which is critical for financial records audit trails.
+- **JWT over sessions:** Stateless authentication is simpler to implement and scales better for APIs.
 - **Manual password hashing in controller:** Done to avoid compatibility issues with Mongoose pre-save hooks in newer bcryptjs versions.
+- **No rate limiting:** Would be added in production using `express-rate-limit` to prevent abuse.
