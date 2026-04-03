@@ -258,6 +258,26 @@ GET /api/dashboard/summary
 - **No rate limiting:** Would be added in production using `express-rate-limit` to prevent abuse.
 
 
+
+
 <img width="1920" height="1028" alt="Screenshot (1421)" src="https://github.com/user-attachments/assets/0ad34caf-6a56-4fc7-819b-7b12d0bec5b9" />
+
+
+
+
+<img width="1920" height="1024" alt="Screenshot (1406)" src="https://github.com/user-attachments/assets/17c7d3a4-3448-4b34-8159-a4a3e82db665" />
+
+
+
+<img width="1920" height="1028" alt="Screenshot (1407)" src="https://github.com/user-attachments/assets/74aca09f-d04f-4dc0-bc42-33bdc3d4e721" />
+
+
+
+
+<img width="1920" height="1014" alt="Screenshot (1408)" src="https://github.com/user-attachments/assets/252e9688-d0fc-443b-8273-ec15b210f70c" />
+
+
+
+<img width="1920" height="1017" alt="Screenshot (1409)" src="https://github.com/user-attachments/assets/3d887cf3-58c2-45e4-b752-1a7f9443978c" />
 
 
