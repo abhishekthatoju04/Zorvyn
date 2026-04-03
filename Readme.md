@@ -2,6 +2,9 @@
 
 A RESTful backend API for a finance dashboard system with role-based access control, built with Node.js, Express, and MongoDB Atlas.
 
+## Live API
+> Base URL: `https://finance-backend-xxxx.onrender.com`
+
 ## Tech Stack
 
 - **Runtime:** Node.js
