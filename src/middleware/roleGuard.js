@@ -1,0 +1,14 @@
+// Usage: authorize('admin') or authorize('admin', 'analyst')
+const authorize = (...allowedRoles) => {
+  return (req, res, next) => {
+    if (!allowedRoles.includes(req.user.role)) {
+      return res.status(403).json({
+        success: false,
+        message: `Access denied. Required role: ${allowedRoles.join(' or ')}`,
+      });
+    }
+    next();
+  };
+};
+
+module.exports = { authorize };
